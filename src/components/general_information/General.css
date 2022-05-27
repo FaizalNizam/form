@@ -1,0 +1,52 @@
+.component {
+    margin-top: 50px;
+}
+
+.wrapper {
+    height: 400px;
+    width: 750px
+}
+
+.right {
+
+    width: 200px;
+    margin-left: 400px;
+    height: 370px;
+    margin-top: -370px;
+
+}
+
+.left {
+    height: 370px;
+
+}
+
+input {
+    width: 300px;
+    height: 40px;
+    border: 1px solid #D4D4D4;
+    border-radius: 5px;
+    margin-top: 10px;
+
+}
+
+label {
+    margin-top: 10px;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #CB1E63;
+    color: #CB1E63;
+}
+
+.next2 {
+    width: 100px;
+    height: 40px;
+    background-color: #0095DA;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: px;
+    margin-top: 50px;
+}

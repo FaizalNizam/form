@@ -1,0 +1,299 @@
+{
+    "appdata": [
+        {
+            "heading":"Application information"
+        },
+        {
+            "label": "Name",
+            "key": "name",
+            "type": "text"
+        },
+        {
+            "label": "City",
+            "key": "city",
+            "type": "text"
+        },
+        {
+            "label": "Mobile number",
+            "key": "mobile",
+            "type": "text"
+        },
+        {
+            "label": "Pin",
+            "key": "pin",
+            "type": "text"
+        },
+        {
+            "label": "Email Address",
+            "key": "email",
+            "type": "text"
+        },
+        {
+            "label": "Country",
+            "key": "country",
+            "type": "text"
+        },
+        {
+            "label": "Address",
+            "key": "address",
+            "type": "text"
+        }
+    ],
+    "generaldata": [
+        {
+            "heading":"General information"
+        },
+        {
+            "label": "Name of agent",
+            "key": "agent",
+            "type": "text"
+        },
+        {
+            "label": "Aircraft Registration",
+            "key": "registration",
+            "type": "text"
+        },
+        {
+            "label": "Type of Aircraft",
+            "key": "type",
+            "type": "text"
+        },
+        {
+            "label": "Start Date",
+            "key": "startDate",
+            "type": "date"
+        },
+        {
+            "label": "Start Time",
+            "key": "startTime",
+            "type": "time"
+        },
+        {
+            "label": "Name of operator",
+            "key": "operator",
+            "type": "text"
+        },
+        {
+            "label": "Alternate registration",
+            "key": "alternate",
+            "type": "text"
+        },
+        {
+            "label": "Maximum takeoff weight",
+            "key": "weight",
+            "type": "text"
+        },
+        {
+            "label": "End Date",
+            "key": "endDate",
+            "type": "date"
+        },
+        {
+            "label": "End Time",
+            "key": "endTime",
+            "type": "time"
+        }
+    ],
+    "Overfly": [
+        {
+            "heading":"Overly Documents"
+        },
+        {
+            "label": "Complete ATS Route",
+            "key": "route",
+            "type": "file"
+        }
+    ],
+    "Business": [
+        {
+            "heading":"Buisness Documents"
+        },
+        {
+            "label": "Crew Details",
+            "key": "crew",
+            "type": "file"
+        },
+        {
+            "label": "Passenger Details",
+            "key": "passenger",
+            "type": "file"
+        },
+        {
+            "label": "Copy of Receiving Party Letter",
+            "key": "letter",
+            "type": "file"
+        },
+        {
+            "label": "Signature Card",
+            "key": "signature",
+            "type": "file"
+        },
+        {
+            "label": "Transfer Flight confirmation",
+            "key": "transfer",
+            "type": "file"
+        },
+        {
+            "label": "Ground Handling Confirmation",
+            "key": "confirmation",
+            "type": "text"
+        }
+    ],
+    "Cargo": [
+        {
+            "heading":"Cargo Documents"
+        },
+        {
+            "label": "Copy of CR",
+            "key": "cr",
+            "type": "file"
+        },
+        {
+            "label": "Health Certificate",
+            "key": "health",
+            "type": "file"
+        },
+        {
+            "label": "Signature Card",
+            "key": "signcard",
+            "type": "file"
+        },
+        {
+            "label": "Consignee letter",
+            "key": "consignee",
+            "type": "file"
+        },
+        {
+            "label": "Airworthiness Certificates",
+            "key": "airworthiness",
+            "type": "file"
+        },
+        {
+            "label": "Air Operator Certificates",
+            "key": "airoperator",
+            "type": "file"
+        },
+        {
+            "label": "Aircraft Insurance Certificates",
+            "key": "aircraftinsurance",
+            "type": "file"
+        },
+        {
+            "label": "Noise Certificates",
+            "key": "noise",
+            "type": "file"
+        },
+        {
+            "label": "Aircraft Registration Certificates",
+            "key": "aircraftregistration",
+            "type": "file"
+        },
+        {
+            "label": "Airway Bill",
+            "key": "airwaybill",
+            "type": "file"
+        },
+        {
+            "label": "Insurance Certificate",
+            "key": "insurance",
+            "type": "file"
+        },
+        {
+            "label": "Import Permit",
+            "key": "import",
+            "type": "file"
+        },
+        {
+            "label": "Dangerous Good",
+            "key": "dangerous",
+            "type": "file"
+        },
+        {
+            "label": "Ground Handling Confirmation",
+            "key": "groundhandling",
+            "type": "text"
+        }
+    ],
+    "Technical": [
+        {
+            "heading":"Technical Documents"
+        },
+        {
+            "label": "Maintenance Confirmation",
+            "key": "maintenance",
+            "type": "file"
+        },
+        {
+            "label": "Crew Disembarkation",
+            "key": "disembarkation",
+            "type": "file"
+        },
+        {
+            "label": "If Yes please provide Hotel Confirmation",
+            "key": "ifyes",
+            "type": "file"
+        },
+        {
+            "label": "Crew Details",
+            "key": "crewdetails",
+            "type": "file"
+        },
+        {
+            "label": "Ground Handling Confirmation",
+            "key": "GHC",
+            "type": "text"
+        }
+    ],
+    "Medical": [
+        {
+            "label": "Letter from Hospital",
+            "key": "letter",
+            "type": "file"
+        },
+        {
+            "label": "Passenger Details",
+            "key": "passdetails",
+            "type": "file"
+        },
+        {
+            "label": "Ground Handling Confirmation",
+            "key": "ground",
+            "type": "text"
+        }
+    ],
+    "Training": [
+        {
+            "label": "Complete ATS Route",
+            "key": "CTR",
+            "type": "text"
+        },
+        {
+            "label": "Number of Touch & Go",
+            "key": "touchgo",
+            "type": "text"
+        },
+        {
+            "label": "Time of Training",
+            "key": "timeoftraining",
+            "type": "text"
+        },
+        {
+            "label": "Ground Handling Confirmation",
+            "key": "handling",
+            "type": "text"
+        }
+    ],
+
+    "additionaldata": [
+        {
+            "label": "Additional details",
+            "key": "additionaldetails",
+            "type": "text"
+        },
+        {
+            "label": "Additional attachment",
+            "key": "attachment",
+            "type": "file"
+        }
+    ]
+}
