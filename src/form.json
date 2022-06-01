@@ -1,8 +1,6 @@
 {
     "appdata": [
-        {
-            "heading":"Application information"
-        },
+      
         {
             "label": "Name",
             "key": "name",
@@ -31,7 +29,7 @@
         {
             "label": "Country",
             "key": "country",
-            "type": "text"
+            "type": "select"
         },
         {
             "label": "Address",
@@ -40,9 +38,7 @@
         }
     ],
     "generaldata": [
-        {
-            "heading":"General information"
-        },
+       
         {
             "label": "Name of agent",
             "key": "agent",
@@ -94,10 +90,9 @@
             "type": "time"
         }
     ],
+
     "Overfly": [
-        {
-            "heading":"Overly Documents"
-        },
+     
         {
             "label": "Complete ATS Route",
             "key": "route",
@@ -105,23 +100,24 @@
         }
     ],
     "Business": [
-        {
-            "heading":"Buisness Documents"
-        },
+      
         {
             "label": "Crew Details",
             "key": "crew",
-            "type": "file"
+            "type": "file",
+            "multiple":"multiple"
         },
         {
             "label": "Passenger Details",
             "key": "passenger",
-            "type": "file"
+            "type": "file",
+            "multiple":"multiple"
         },
         {
             "label": "Copy of Receiving Party Letter",
             "key": "letter",
-            "type": "file"
+            "type": "file",
+            "multiple":"multiple"
         },
         {
             "label": "Signature Card",
@@ -140,9 +136,7 @@
         }
     ],
     "Cargo": [
-        {
-            "heading":"Cargo Documents"
-        },
+     
         {
             "label": "Copy of CR",
             "key": "cr",
@@ -215,9 +209,7 @@
         }
     ],
     "Technical": [
-        {
-            "heading":"Technical Documents"
-        },
+       
         {
             "label": "Maintenance Confirmation",
             "key": "maintenance",
@@ -247,7 +239,7 @@
     "Medical": [
         {
             "label": "Letter from Hospital",
-            "key": "letter",
+            "key": "medicalletter",
             "type": "file"
         },
         {
