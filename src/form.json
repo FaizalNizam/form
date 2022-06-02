@@ -104,20 +104,17 @@
         {
             "label": "Crew Details",
             "key": "crew",
-            "type": "file",
-            "multiple":"multiple"
+            "type": "multiplefile"
         },
         {
             "label": "Passenger Details",
             "key": "passenger",
-            "type": "file",
-            "multiple":"multiple"
+            "type": "multiplefile"
         },
         {
             "label": "Copy of Receiving Party Letter",
             "key": "letter",
-            "type": "file",
-            "multiple":"multiple"
+            "type": "multiplefile"
         },
         {
             "label": "Signature Card",
@@ -145,32 +142,32 @@
         {
             "label": "Health Certificate",
             "key": "health",
-            "type": "file"
+            "type": "multiplefile"
         },
         {
             "label": "Signature Card",
             "key": "signcard",
-            "type": "file"
+            "type": "multiplefile"
         },
         {
             "label": "Consignee letter",
             "key": "consignee",
-            "type": "file"
+            "type": "multiplefile"
         },
         {
             "label": "Airworthiness Certificates",
             "key": "airworthiness",
-            "type": "file"
+            "type": "multiplefile"
         },
         {
             "label": "Air Operator Certificates",
             "key": "airoperator",
-            "type": "file"
+            "type": "multiplefile"
         },
         {
             "label": "Aircraft Insurance Certificates",
             "key": "aircraftinsurance",
-            "type": "file"
+            "type": "multiplefile"
         },
         {
             "label": "Noise Certificates",

@@ -1,6 +1,18 @@
 
 
-export const reducer = (state = { appdata: {}, generaldata: {}, purposedata: {}, additionaldata: {}, adddata: [] }, action) => {
+const purposedata = {
+    crew: [''],
+    passenger: [''],
+    letter: [''],
+    health:[''],
+    signcard:[''],
+    consignee:[''],
+    airworthiness:[''],
+    airoperator:[''],
+    aircraftinsurance:['']
+}
+
+export const reducer = (state = { appdata: {}, generaldata: {}, purposedata, additionaldata: {} }, action) => {
 
     switch (action.type) {
 
@@ -20,9 +32,7 @@ export const reducer = (state = { appdata: {}, generaldata: {}, purposedata: {},
 
             return { ...state, additionaldata: action.payload }
 
-        case 'adddata':
 
-            return { ...state, adddata: action.payload }
         default:
 
             return state

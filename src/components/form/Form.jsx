@@ -2,20 +2,19 @@ import React, { useState } from 'react';
 import form from '../../form.json'
 import '../form/form.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { additionalData, appData, generalData, purposeData, addData } from '../../redux/Action';
+import { additionalData, appData, generalData, purposeData } from '../../redux/Action';
 import Summary from '../summary/Summary';
 
 
 function Form() {
 
     const dispatch = useDispatch()
-    const { appdata, generaldata, purposedata, additionaldata, adddata } = useSelector(state => state)
+    const { appdata, generaldata, purposedata, additionaldata } = useSelector(state => state)
     const [error, setError] = useState({})
     const [selectError, setSelectError] = useState({})
     const [page, setPage] = useState('application')
     const [purpose, setPurpose] = useState('')
     const [select, setSelect] = useState('purpose')
-    const [arr, setArr] = useState([])
 
 
     const appHandleChange = (e) => {
@@ -26,9 +25,31 @@ function Form() {
         dispatch(generalData({ ...generaldata, [e.target.name]: e.target.value }))
         setError({ ...error, [e.target.name]: '' })
     }
-    const purposeHandleChange = (e) => {
-        dispatch(purposeData({ ...purposedata, [e.target.name]: e.target.value }))
-        setSelectError({ ...selectError, [e.target.name]: '' })
+    const purposeHandleChange = (type, e, name, i) => {
+
+        /*if (type === 'file') {
+            console.log(type);
+            dispatch(purposeData({ ...purposedata, [e.target.name]: e.target.value }))
+            setSelectError({ ...selectError, [e.target.name]: '' })
+        }
+        if (type === 'multiplefile') {
+            console.log(type);
+            dispatch(purposeData({ ...purposedata[name][i], [e.target.name]: e.target.value }))
+            setSelectError({ ...selectError, [e.target.name]: '' })
+        }*/
+
+        switch (type) {
+            case 'file':
+                setSelectError({ ...selectError, [e.target.name]: '' })
+                return dispatch(purposeData({ ...purposedata, [e.target.name]: e.target.value }))
+            
+            case 'multiplefile':
+                purposedata[name][i]=e.target.value
+                setSelectError({ ...selectError, [e.target.name]: '' })
+                return dispatch(purposeData( purposedata))
+                
+        }
+
     }
     const additionalHandleChange = (e) => {
         dispatch(additionalData({ ...additionaldata, [e.target.name]: e.target.value }))
@@ -68,8 +89,19 @@ function Form() {
         }
     }
 
+    const handleAddMore = (item) => {
+        if (purposedata[item]) {
+            console.log(purposedata[item]);
+            purposedata[item].push("")
+        } else {
+            console.log(purposedata[item]);
+            purposedata[item] = []
+            purposedata[item].push("")
+        }
+        dispatch(purposeData({ ...purposedata }))
+    }
 
-    const type = (type, id, name, value, eventHandler, multiples) => {
+    const type = (type, id, name, value, eventHandler) => {
         switch (type) {
             case 'text':
                 return <input type='text' id={id} name={name} value={value} onChange={(e) => eventHandler(e)} ></input>
@@ -91,31 +123,36 @@ function Form() {
                 </select>
 
             case 'file':
-                return <input type='file' id={id} name={name} value={null} onChange={(e) => eventHandler(e)} multiple={multiples} ></input>
+                return <input type='file' id={id} name={name} value={null} onChange={(e) => eventHandler(type, e)}></input>
+
+            case 'multiplefile':
+                console.log(purposedata)
+                console.log(name)
+                console.log(purposedata[name])
+                return <div>
+                    {
+                        purposedata?.[name]?.map((item, i) => {
+                            
+                            return (<div >
+                                {console.log(item)}
+                                <input type='file' id={id} name={name} value={null} onChange={(e) => eventHandler(type, e, name, i)}></input>
+                                <i className="bi bi-file-plus" onClick={() => { item.length!==0?handleAddMore(name):setSelectError({name:'choose a file'})}} style={{ marginLeft: 10 }}></i>
+                                <label style={{color:'red'}} >{selectError.name}</label>
+                            </div>)
+                        })
+                    }
+
+                </div>
         }
-    }
-
-
-    const addFiles = (type, key) => {
-        setArr((files) =>
-            [...files, { type: type, name: key }])
-    }
-
-    const handleAddChange = (e) => {
-        const index = e.target.id;
-        setArr((files) => {
-            const newArr = files.slice()
-            newArr[index].key = e.target.value;
-            return newArr;
-        })
-
     }
 
 
     const render = () => {
         switch (page) {
+           
             case 'application':
-                return form.appdata.map((obj) => (
+                console.log(page);
+                return page&&form.appdata.map((obj) => (
                     <div key={obj.key}>
                         <label >{obj.label}</label><br />
                         {
@@ -126,7 +163,8 @@ function Form() {
                 ))
 
             case 'general':
-                return form.generaldata.map((obj) => (
+                console.log(page);
+                return page&&form.generaldata.map((obj) => (
                     <div key={obj.key}>
                         <label >{obj.label}</label><br />
                         {
@@ -154,22 +192,14 @@ function Form() {
                             <div key={obj.key}>
                                 <label >{obj.label}</label><br />
                                 {
-                                    type(obj.type, obj.key, obj.key, purposedata[obj.key], purposeHandleChange, obj.multiple)
+                                    type(obj.type, obj.key, obj.key, purposedata[obj.key], purposeHandleChange)
                                 }
-                                {obj.multiple ? <i class="bi bi-file-plus" style={{ marginLeft: 10 }} onClick={() => addFiles(obj.type, obj.key)}></i> : ''}
 
-``
                                 <label id={obj.key} style={{ color: 'red', marginLeft: 10 }}>{selectError[obj.key]}</label>
                             </div>
 
                         ))}
-                        <div >
-                            {
-                                arr && arr.map((item, i) => (
-                                    <input type={item.type} name={item.key} id={i} onChange={(e) => handleAddChange(e, item.key)} key={i} ></input>
-                                ))
-                            }
-                        </div>
+
                     </div>
 
                 </div>
@@ -214,7 +244,11 @@ function Form() {
                 }
 
                 if (Object.keys(error).length === 0) {
+                    
+                    document.getElementById('general').disabled=false
                     setPage('general')
+                }else{
+                    document.getElementById('general').disabled=true
                 }
                 break
 
@@ -226,7 +260,10 @@ function Form() {
                 })
                 setError(error)
                 if (Object.keys(error).length === 0) {
+                    document.getElementById('purpose').disabled=false
                     setPage('purpose')
+                }else{
+                    document.getElementById('purpose').disabled=true
                 }
                 break
 
@@ -238,7 +275,10 @@ function Form() {
                 })
                 setError(error)
                 if (Object.keys(error).length !== 0) {
+                    document.getElementById('summary').disabled=false
                     setPage('summary')
+                }else{
+                    document.getElementById('summary').disabled=true
                 }
                 break
         }
@@ -277,6 +317,7 @@ function Form() {
                     if (!purposedata[obj.key]) {
                         selectError[obj.key] = 'Mandatory field'
                     }
+                    
                 })
                 setSelectError(selectError)
                 if (Object.keys(selectError).length === 0) {
@@ -345,19 +386,19 @@ function Form() {
             <div>
                 <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li className="nav-item" role="presentation">
-                        <button className={page === 'application' ? "nav-link active" : "nav-link"} id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" onClick={() => setPage('application')}>Application information</button>
+                        <button className={page === 'application' ? "nav-link active" : "nav-link"} id="application" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" onClick={() => setPage('application')}>Application information</button>
                     </li>
                     <li className="nav-item" role="presentation">
-                        <button className={page === 'general' ? "nav-link active" : "nav-link"} id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" onClick={() => setPage('general')}>General Information</button>
+                        <button disabled className= {page === 'general' ? "nav-link active" : "nav-link"} id="general" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" onClick={() => setPage('general')}>General Information</button>
                     </li>
                     <li className="nav-item" role="presentation">
-                        <button className={page === 'purpose' ? "nav-link active" : "nav-link"} id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false" onClick={() => setPage('purpose')}>Purpose and Documents</button>
+                        <button  className={page === 'purpose' ? "nav-link active" : "nav-link"} id="purpose" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false" onClick={() => setPage('purpose')}>Purpose and Documents</button>
                     </li>
                     <li className="nav-item" role="presentation">
-                        <button className={page === 'additional' ? "nav-link active" : "nav-link"} id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false" onClick={() => setPage('additional')}>Additional Information</button>
+                        <button disabled className={page === 'additional' ? "nav-link active" : "nav-link"} id="additional" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false" onClick={() => setPage('additional')}>Additional Information</button>
                     </li>
                     <li className="nav-item" role="presentation">
-                        <button className={page === 'summary' ? "nav-link active" : "nav-link"} id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false" onClick={() => setPage('summary')}>Summary</button>
+                        <button disabled className={page === 'summary' ? "nav-link active" : "nav-link"} id="summary" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false" onClick={() => setPage('summary')}>Summary</button>
                     </li>
                 </ul>
             </div>

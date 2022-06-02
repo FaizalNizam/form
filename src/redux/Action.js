@@ -24,8 +24,3 @@ export const additionalData = (additionaldata) => (dispatch) => {
     console.log(additionaldata);
     dispatch({ type: 'additionaldata', payload: additionaldata })
 }
-
-export const addData = (adddata) => (dispatch) => {
-    console.log(adddata);
-    dispatch({ type: 'adddata', payload: adddata })
-}
